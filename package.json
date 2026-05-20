@@ -1,0 +1,34 @@
+{
+  "name": "cuttncousins-website",
+  "version": "1.0.0",
+  "description": "Professional website for Cutt N Cousins lawn care and landscaping services",
+  "main": "index.html",
+  "scripts": {
+    "start": "Open index.html in your browser",
+    "deploy": "Push to GitHub Pages"
+  },
+  "keywords": [
+    "lawn care",
+    "landscaping",
+    "mowing",
+    "Oklahoma",
+    "tree removal",
+    "junk removal"
+  ],
+  "author": "Cutt N Cousins LLC",
+  "license": "Proprietary",
+  "business": {
+    "name": "Cutt N Cousins LLC",
+    "owner": "Steven & Daytawion",
+    "phone": "(405) 861-4661",
+    "phone2": "(405) 476-5885",
+    "email": "cuttncousins@gmail.com",
+    "serviceArea": "Oklahoma (statewide) + Out-of-state services",
+    "licenses": [
+      "Licensed",
+      "Bonded",
+      "Insured"
+    ],
+    "yearEstablished": 2023
+  }
+}

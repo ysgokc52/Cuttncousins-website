@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal - Cutt N Cousins</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>Cutt N Cousins</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="quote.html">Get a Quote</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="portal.html" class="active">Client Portal</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Client Portal</h1>
+            <p>Securely upload and manage your project documents</p>
+        </div>
+    </section>
+
+    <!-- Portal Content -->
+    <section class="portal-section">
+        <div class="container">
+            <div class="portal-container">
+                <div class="portal-info">
+                    <h2>Welcome to Your Client Portal</h2>
+                    <p>Use this secure portal to upload signed contracts, project details, and other important documents related to your Cutt N Cousins project.</p>
+                    
+                    <h3>How to Use:</h3>
+                    <ol>
+                        <li>Fill out the form below with your project information</li>
+                        <li>Upload your signed contract (PDF, DOC, or image file)</li>
+                        <li>Submit your documents securely</li>
+                        <li>You'll receive a confirmation email when we receive your documents</li>
+                    </ol>
+
+                    <h3>Security:</h3>
+                    <p>All documents are encrypted and securely stored. We take your privacy and data security seriously.</p>
+                </div>
+
+                <form id="portalForm" class="portal-form">
+                    <h3>Upload Your Documents</h3>
+
+                    <div class="form-group">
+                        <label for="client-name">Your Name *</label>
+                        <input type="text" id="client-name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="client-email">Email Address *</label>
+                        <input type="email" id="client-email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="client-phone">Phone Number *</label>
+                        <input type="tel" id="client-phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-name">Project Name/Description *</label>
+                        <input type="text" id="project-name" name="project-name" placeholder="e.g., Backyard Landscaping" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="document-type">Document Type *</label>
+                        <select id="document-type" name="document-type" required>
+                            <option value="">-- Select Document Type --</option>
+                            <option value="contract">Signed Contract</option>
+                            <option value="proposal">Project Proposal</option>
+                            <option value="photos">Project Photos</option>
+                            <option value="other">Other Document</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="file-upload">Upload File (PDF, DOC, JPG, PNG) *</label>
+                        <input type="file" id="file-upload" name="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" required>
+                        <p class="file-note">Max file size: 10MB</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Additional Notes (Optional)</label>
+                        <textarea id="notes" name="notes" rows="3" placeholder="Any additional information..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Upload Securely</button>
+                </form>
+
+                <div id="portalMessage" class="form-message" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="portal-faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h4>Is my information secure?</h4>
+                <p>Yes! All uploads are encrypted and stored securely. We comply with data protection best practices.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>What file formats can I upload?</h4>
+                <p>We accept PDF, DOC, DOCX, JPG, JPEG, and PNG files up to 10MB each.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>How long does it take to receive a confirmation?</h4>
+                <p>You'll receive an email confirmation within 24 hours of uploading your documents.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>Can I upload multiple files?</h4>
+                <p>Please submit each document separately through the form above.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4>Need help?</h4>
+                <p>Contact us directly at <a href="tel:+14058614661">(405) 861-4661</a> or <a href="mailto:cuttncousins@gmail.com">cuttncousins@gmail.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Cutt N Cousins LLC. All rights reserved.</p>
+            <p>Licensed • Bonded • Insured | Serving Oklahoma & Beyond</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
