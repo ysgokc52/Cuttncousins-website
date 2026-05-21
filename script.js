@@ -1,8 +1,8 @@
-// ============================================
-// CUTT N COUSINS - Main JavaScript
-// ============================================
+/* ============================================
+   CUTT N COUSINS - JavaScript
+   ============================================ */
 
-// Form Handling
+// Form Handling with Formspree Integration
 document.addEventListener('DOMContentLoaded', function() {
     const quoteForm = document.getElementById('quoteForm');
     const contactForm = document.getElementById('contactForm');
@@ -24,143 +24,210 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Handle Quote Form Submission
-function handleQuoteSubmit(e) {
+// Handle Quote Form Submission with Formspree
+async function handleQuoteSubmit(e) {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
     const messageDiv = document.getElementById('formMessage');
+    const submitButton = form.querySelector('button[type="submit"]');
 
-    // Validate form
-    if (!validateForm(formData)) {
-        showMessage(messageDiv, 'Please fill in all required fields correctly.', 'error');
-        return;
+    try {
+        // Disable submit button
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+
+        // Validate form
+        if (!validateForm(formData)) {
+            showMessage(messageDiv, 'Please fill in all required fields correctly.', 'error');
+            submitButton.disabled = false;
+            submitButton.textContent = 'Request Quote';
+            return;
+        }
+
+        // Send to Formspree
+        const response = await fetch('https://formspree.io/f/xyzqwert', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            // Save locally as backup
+            const quoteData = {
+                timestamp: new Date().toISOString(),
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                service: formData.get('service'),
+                location: formData.get('location'),
+                description: formData.get('description'),
+                urgency: formData.get('urgency'),
+                contactMethod: formData.get('contact-method')
+            };
+            saveToLocalStorage('quoteRequests', quoteData);
+
+            // Show success message
+            showMessage(messageDiv, '✓ Quote request sent successfully! We\'ll contact you within 24 hours.', 'success');
+            form.reset();
+        } else {
+            throw new Error('Form submission failed');
+        }
+    } catch (error) {
+        console.error('Form error:', error);
+        showMessage(messageDiv, '✗ Error sending quote. Please try again or call us directly.', 'error');
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Request Quote';
     }
-
-    // Create form data object
-    const quoteData = {
-        timestamp: new Date().toISOString(),
-        name: formData.get('name'),
-        phone: formData.get('phone'),
-        email: formData.get('email'),
-        service: formData.get('service'),
-        location: formData.get('location'),
-        description: formData.get('description'),
-        urgency: formData.get('urgency'),
-        contactMethod: formData.get('contact-method')
-    };
-
-    // Store locally
-    saveToLocalStorage('quoteRequests', quoteData);
-
-    // Send to email service (if configured)
-    sendToEmailService(quoteData, 'quote');
-
-    // Show success message
-    showMessage(messageDiv, 'Quote request submitted successfully! We\'ll contact you within 24 hours.', 'success');
-
-    // Reset form
-    form.reset();
 }
 
-// Handle Contact Form Submission
-function handleContactSubmit(e) {
+// Handle Contact Form Submission with Formspree
+async function handleContactSubmit(e) {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
     const messageDiv = document.getElementById('contactMessage');
+    const submitButton = form.querySelector('button[type="submit"]');
 
-    // Validate form
-    if (!validateForm(formData)) {
-        showMessage(messageDiv, 'Please fill in all required fields.', 'error');
-        return;
+    try {
+        // Disable submit button
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+
+        // Validate form
+        if (!validateForm(formData)) {
+            showMessage(messageDiv, 'Please fill in all required fields.', 'error');
+            submitButton.disabled = false;
+            submitButton.textContent = 'Send Message';
+            return;
+        }
+
+        // Send to Formspree
+        const response = await fetch('https://formspree.io/f/xyzqwert', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            // Save locally as backup
+            const contactData = {
+                timestamp: new Date().toISOString(),
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                message: formData.get('message')
+            };
+            saveToLocalStorage('contactMessages', contactData);
+
+            // Show success message
+            showMessage(messageDiv, '✓ Message sent successfully! We\'ll get back to you soon.', 'success');
+            form.reset();
+        } else {
+            throw new Error('Form submission failed');
+        }
+    } catch (error) {
+        console.error('Form error:', error);
+        showMessage(messageDiv, '✗ Error sending message. Please try again or call us directly.', 'error');
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Message';
     }
-
-    // Create contact data object
-    const contactData = {
-        timestamp: new Date().toISOString(),
-        name: formData.get('name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        message: formData.get('message')
-    };
-
-    // Store locally
-    saveToLocalStorage('contactMessages', contactData);
-
-    // Send to email service (if configured)
-    sendToEmailService(contactData, 'contact');
-
-    // Show success message
-    showMessage(messageDiv, 'Message sent successfully! We\'ll get back to you soon.', 'success');
-
-    // Reset form
-    form.reset();
 }
 
 // Handle Portal Form Submission
-function handlePortalSubmit(e) {
+async function handlePortalSubmit(e) {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
     const messageDiv = document.getElementById('portalMessage');
+    const submitButton = form.querySelector('button[type="submit"]');
 
-    // Validate form
-    if (!validateForm(formData)) {
-        showMessage(messageDiv, 'Please fill in all required fields.', 'error');
-        return;
+    try {
+        // Disable submit button
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+
+        // Validate form
+        if (!validateForm(formData)) {
+            showMessage(messageDiv, 'Please fill in all required fields.', 'error');
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit';
+            return;
+        }
+
+        // Validate file
+        const fileInput = document.getElementById('file-upload');
+        if (!fileInput || !fileInput.files.length) {
+            showMessage(messageDiv, 'Please select a file to upload.', 'error');
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit';
+            return;
+        }
+
+        const file = fileInput.files[0];
+        if (file.size > 10485760) { // 10MB
+            showMessage(messageDiv, 'File size must be less than 10MB.', 'error');
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit';
+            return;
+        }
+
+        // Send to Formspree
+        const response = await fetch('https://formspree.io/f/xyzqwert', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            // Save locally as backup
+            const portalData = {
+                timestamp: new Date().toISOString(),
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                projectName: formData.get('project-name'),
+                documentType: formData.get('document-type'),
+                fileName: file.name,
+                fileSize: file.size,
+                notes: formData.get('notes')
+            };
+            saveToLocalStorage('portalUploads', portalData);
+
+            // Show success message
+            showMessage(messageDiv, '✓ Document uploaded successfully! You\'ll receive a confirmation email within 24 hours.', 'success');
+            form.reset();
+        } else {
+            throw new Error('Form submission failed');
+        }
+    } catch (error) {
+        console.error('Form error:', error);
+        showMessage(messageDiv, '✗ Error uploading document. Please try again.', 'error');
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit';
     }
-
-    // Validate file
-    const fileInput = document.getElementById('file-upload');
-    if (!fileInput.files.length) {
-        showMessage(messageDiv, 'Please select a file to upload.', 'error');
-        return;
-    }
-
-    const file = fileInput.files[0];
-    if (file.size > 10485760) { // 10MB
-        showMessage(messageDiv, 'File size must be less than 10MB.', 'error');
-        return;
-    }
-
-    // Create portal data object
-    const portalData = {
-        timestamp: new Date().toISOString(),
-        name: formData.get('name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        projectName: formData.get('project-name'),
-        documentType: formData.get('document-type'),
-        fileName: file.name,
-        fileSize: file.size,
-        notes: formData.get('notes')
-    };
-
-    // Store locally
-    saveToLocalStorage('portalUploads', portalData);
-
-    // Send to email service
-    sendToEmailService(portalData, 'portal');
-
-    // Show success message
-    showMessage(messageDiv, 'Document uploaded successfully! You\'ll receive a confirmation email within 24 hours.', 'success');
-
-    // Reset form
-    form.reset();
 }
 
 // Validate Form Data
 function validateForm(formData) {
     for (let [key, value] of formData.entries()) {
         if (key === 'phone' && value) {
-            return isValidPhone(value);
+            if (!isValidPhone(value)) return false;
         }
         if (key === 'email' && value) {
-            return isValidEmail(value);
+            if (!isValidEmail(value)) return false;
         }
     }
     return true;
@@ -180,9 +247,14 @@ function isValidEmail(email) {
 
 // Show Message
 function showMessage(messageDiv, text, type) {
+    if (!messageDiv) return;
+    
     messageDiv.textContent = text;
     messageDiv.className = `form-message ${type}`;
     messageDiv.style.display = 'block';
+
+    // Scroll to message
+    messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
     // Auto-hide after 5 seconds (for success messages)
     if (type === 'success') {
@@ -192,32 +264,17 @@ function showMessage(messageDiv, text, type) {
     }
 }
 
-// Save to Local Storage (Encrypted)
+// Save to Local Storage
 function saveToLocalStorage(key, data) {
     try {
         let existing = localStorage.getItem(key);
         let dataArray = existing ? JSON.parse(existing) : [];
         dataArray.push(data);
         localStorage.setItem(key, JSON.stringify(dataArray));
+        console.log(`Data saved to local storage (${key}):`, data);
     } catch (error) {
         console.error('Error saving to local storage:', error);
     }
-}
-
-// Send to Email Service (Formspree or Custom)
-function sendToEmailService(data, type) {
-    // This function would integrate with Formspree, Firebase, or custom backend
-    // Example with Formspree:
-    // fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    //     method: 'POST',
-    //     body: JSON.stringify(data),
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // });
-
-    // For now, data is stored locally and can be retrieved manually
-    console.log(`${type} data submitted:`, data);
 }
 
 // Retrieve Data from Local Storage
@@ -240,7 +297,7 @@ function formatPhoneNumber(phone) {
     return phone;
 }
 
-// Mobile Menu Toggle (if needed)
+// Mobile Menu Toggle
 function setupMobileMenu() {
     const menuButton = document.querySelector('.menu-button');
     const navMenu = document.querySelector('.nav-menu');
@@ -252,8 +309,30 @@ function setupMobileMenu() {
     }
 }
 
+// Update Active Navigation Link
+function updateActiveNavLink() {
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    const currentLocation = location.pathname;
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        
+        if (href === currentLocation || 
+            (currentLocation === '/' && href === 'index.html') ||
+            (currentLocation.endsWith('/') && href === 'index.html') ||
+            href === location.pathname.split('/').pop()) {
+            link.classList.add('active');
+        }
+    });
+}
+
 // Initialize on page load
 window.addEventListener('load', () => {
     setupMobileMenu();
+    updateActiveNavLink();
     console.log('Cutt N Cousins website loaded successfully!');
 });
+
+// Update active link on navigation
+document.addEventListener('DOMContentLoaded', updateActiveNavLink);
