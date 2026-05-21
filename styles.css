@@ -121,24 +121,67 @@ a:hover {
     border-bottom-color: var(--primary-orange);
 }
 
-/* Hero Section */
+/* Hero Section with Logo Background */
 .hero {
-    background: linear-gradient(135deg, var(--primary-black) 0%, var(--text-dark) 100%);
+    background-color: var(--primary-black);
+    background-image: 
+        /* Logo text watermark */
+        radial-gradient(circle at 20% 30%, rgba(255, 149, 0, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 149, 0, 0.06) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 50%, rgba(255, 149, 0, 0.04) 0%, transparent 60%);
+    background-size: 600px 400px, 700px 500px, 800px 600px;
+    background-position: -50px -50px, 100px 150px, 0 0;
+    background-attachment: fixed;
     color: var(--background-white);
     padding: 6rem 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(51, 51, 51, 0.7) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background-image: radial-gradient(circle, rgba(255, 149, 0, 0.03) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-content h2 {
     color: var(--primary-orange);
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero-content p {
     color: var(--secondary-silver);
     font-size: 1.2rem;
     margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Buttons */
@@ -163,6 +206,7 @@ a:hover {
     background-color: var(--primary-black);
     color: var(--primary-orange);
     border: 2px solid var(--primary-orange);
+    transform: scale(1.05);
 }
 
 .btn-secondary {
@@ -174,18 +218,35 @@ a:hover {
 .btn-secondary:hover {
     background-color: var(--primary-orange);
     color: var(--primary-black);
+    transform: scale(1.05);
 }
 
 /* Services Preview */
 .services-preview {
     padding: 4rem 0;
     background-color: var(--background-white);
+    position: relative;
+}
+
+.services-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 149, 0, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(255, 149, 0, 0.02) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .services-preview h2 {
     text-align: center;
     margin-bottom: 3rem;
     color: var(--primary-black);
+    position: relative;
+    z-index: 1;
 }
 
 .services-grid {
@@ -193,6 +254,8 @@ a:hover {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .service-card {
@@ -222,17 +285,37 @@ a:hover {
 .services-preview .btn {
     display: block;
     margin: 2rem auto 0;
+    position: relative;
+    z-index: 1;
 }
 
 /* About Section */
 .about {
-    background-color: #f9f9f9;
+    background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+    background-image: 
+        linear-gradient(135deg, rgba(249, 249, 249, 0.9) 0%, rgba(255, 255, 255, 0.9) 100%),
+        radial-gradient(circle at 50% 100%, rgba(255, 149, 0, 0.03) 0%, transparent 50%);
     padding: 4rem 0;
+    position: relative;
+}
+
+.about::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background-image: radial-gradient(circle, rgba(255, 149, 0, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
 }
 
 .about h2 {
     text-align: center;
     margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .about-content {
@@ -240,6 +323,8 @@ a:hover {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 .about-text p {
@@ -265,45 +350,83 @@ a:hover {
     font-weight: 600;
     font-size: 1.2rem;
     border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(255, 149, 0, 0.2);
 }
 
 /* Contact CTA */
 .contact-cta {
     background-color: var(--primary-black);
+    background-image: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(51, 51, 51, 0.9) 100%),
+        radial-gradient(circle at 10% 20%, rgba(255, 149, 0, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(255, 149, 0, 0.05) 0%, transparent 50%);
     color: var(--background-white);
     padding: 3rem 0;
     text-align: center;
+    position: relative;
 }
 
 .contact-cta h2 {
     color: var(--primary-orange);
     margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 .contact-cta p {
     color: var(--secondary-silver);
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-cta .btn {
+    position: relative;
+    z-index: 1;
 }
 
 /* Page Header */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-black) 0%, var(--text-dark) 100%);
+    background-color: var(--primary-black);
+    background-image: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(51, 51, 51, 0.8) 100%),
+        radial-gradient(circle at 15% 30%, rgba(255, 149, 0, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 85% 70%, rgba(255, 149, 0, 0.05) 0%, transparent 40%);
     color: var(--background-white);
     padding: 3rem 0;
     text-align: center;
+    position: relative;
 }
 
 .page-header h1 {
     color: var(--primary-orange);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
 }
 
 .page-header p {
     color: var(--secondary-silver);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
 }
 
 /* Services Detail */
 .services-detail {
     padding: 3rem 0;
+    position: relative;
+}
+
+.services-detail::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 50% 50%, rgba(255, 149, 0, 0.02) 0%, transparent 100%);
+    pointer-events: none;
 }
 
 .service-detail-card {
@@ -312,6 +435,8 @@ a:hover {
     margin-bottom: 2rem;
     border-left: 4px solid var(--primary-orange);
     border-radius: 4px;
+    position: relative;
+    z-index: 1;
 }
 
 .service-detail-card h2 {
@@ -455,6 +580,7 @@ a:hover {
     color: var(--background-white);
     padding: 2rem;
     border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .quote-info h3 {
@@ -517,17 +643,23 @@ a:hover {
 /* Service Area */
 .service-area {
     background-color: #f9f9f9;
+    background-image: radial-gradient(circle at 50% 50%, rgba(255, 149, 0, 0.03) 0%, transparent 100%);
     padding: 3rem 0;
     text-align: center;
+    position: relative;
 }
 
 .service-area h2 {
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .service-area p {
     font-size: 1.1rem;
     margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 /* Quick Contact */
@@ -625,15 +757,19 @@ a:hover {
 /* Footer */
 .footer {
     background-color: var(--primary-black);
+    background-image: radial-gradient(circle at 50% 50%, rgba(255, 149, 0, 0.05) 0%, transparent 100%);
     color: var(--secondary-silver);
     text-align: center;
     padding: 2rem 0;
     margin-top: 3rem;
+    position: relative;
 }
 
 .footer p {
     margin-bottom: 0.5rem;
     color: var(--secondary-silver);
+    position: relative;
+    z-index: 1;
 }
 
 /* Responsive Design */
