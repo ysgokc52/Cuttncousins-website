@@ -1,127 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get a Quote - Cutt N Cousins</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Get a Free Quote — Cutt n Cousins</title>
+<meta name="description" content="Request a free, no-obligation quote for lawn care or landscaping. We respond within 24 hours." />
+<link rel="icon" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand"> 
-                <img src="logo.png" alt="Cutt N Cousins Logo">
-                <h1>Cutt N Cousins</h1>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="quote.html" class="active">Get a Quote</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="portal.html">Client Portal</a></li>
-            </ul>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo-wrap">
+      <img src="logo.png" alt="Cutt n Cousins logo" />
+      <div class="logo-text">
+        Cutt n Cousins
+        <small>Lawn Care & Landscaping</small>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="portal.html">Portal</a></li>
+      <li><a href="quote.html" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="mobile-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <ul>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="portal.html">Portal</a></li>
+    <li><a href="quote.html" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="eyebrow">Free Estimate</div>
+      <h1>Tell us about your <em>property.</em></h1>
+      <p>Fill out the form and we'll get back to you within 24 hours with a clear, no-obligation quote.</p>
+    </div>
+  </div>
+</section>
+
+<section class="form-section">
+  <div class="container form-wrap">
+    <div class="form-info">
+      <h2>What to expect</h2>
+      <p>We aim to make this easy. Tell us a bit about your property and what you need, and we'll be in touch — usually the same day.</p>
+      <ul class="info-list">
+        <li>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div>
+            <strong>24-Hour Response</strong>
+            <span>We get back to every inquiry within one business day.</span>
+          </div>
+        </li>
+        <li>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+          <div>
+            <strong>No Obligation</strong>
+            <span>Free estimates with zero pressure. We'll never push a service you don't need.</span>
+          </div>
+        </li>
+        <li>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          <div>
+            <strong>On-Site Visit</strong>
+            <span>For larger jobs, we'll come walk the property and give you an accurate quote in person.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <form id="quote-form" class="form-card">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="q-name">Name <span class="req">*</span></label>
+          <input type="text" id="q-name" name="name" required />
         </div>
-    </nav>
-
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Get Your Free Quote</h1>
-            <p>We'll respond within 24 hours via your preferred contact method</p>
+        <div class="form-group">
+          <label for="q-phone">Phone <span class="req">*</span></label>
+          <input type="tel" id="q-phone" name="phone" required />
         </div>
-    </section>
-
-    <!-- Quote Form -->
-    <section class="quote-section">
-        <div class="container">
-            <div class="form-container">
-                <form id="quoteForm" class="quote-form">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" placeholder="(405) 555-1234" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="service">Service Needed *</label>
-                        <select id="service" name="service" required>
-                            <option value="">-- Select a Service --</option>
-                            <option value="lawn-mowing">Lawn Mowing</option>
-                            <option value="trimming-hedging">Trimming & Hedging</option>
-                            <option value="tree-removal">Tree Removal</option>
-                            <option value="landscaping">Landscaping & Xeriscaping</option>
-                            <option value="junk-removal">Junk & Trash Removal</option>
-                            <option value="construction-cleanup">Construction Cleanup</option>
-                            <option value="other">Other/Custom Service</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="location">Property Location (Address or City) *</label>
-                        <input type="text" id="location" name="location" placeholder="Enter your address or city" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="description">Project Description *</label>
-                        <textarea id="description" name="description" rows="5" placeholder="Please describe your project in detail..." required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="urgency">Timeline</label>
-                        <select id="urgency" name="urgency">
-                            <option value="flexible">Flexible</option>
-                            <option value="soon">Within 1-2 weeks</option>
-                            <option value="asap">ASAP/Emergency</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact-method">Preferred Contact Method *</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="contact-method" value="text" required> Text Message</label>
-                            <label><input type="radio" name="contact-method" value="call" required> Phone Call</label>
-                            <label><input type="radio" name="contact-method" value="email" required> Email</label>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Request Quote</button>
-                </form>
-
-                <div id="formMessage" class="form-message" style="display: none;"></div>
-            </div>
-
-            <div class="quote-info">
-                <h3>Why Choose Cutt N Cousins?</h3>
-                <ul>
-                    <li>✓ Free quotes within 24 hours</li>
-                    <li>✓ Licensed, Bonded & Insured</li>
-                    <li>✓ 3+ years of professional experience</li>
-                    <li>✓ Serving Oklahoma statewide</li>
-                    <li>✓ Out-of-state services available</li>
-                    <li>✓ Payment upon completion</li>
-                </ul>
-            </div>
+      </div>
+      <div class="form-group">
+        <label for="q-email">Email <span class="req">*</span></label>
+        <input type="email" id="q-email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="q-address">Property Address</label>
+        <input type="text" id="q-address" name="address" placeholder="Street, City" />
+      </div>
+      <div class="form-group">
+        <label>Services Needed</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item"><input type="checkbox" name="services" value="One-Time Cut" /><span>One-Time Cut</span></label>
+          <label class="checkbox-item"><input type="checkbox" name="services" value="Weekly Mowing" /><span>Weekly Mowing</span></label>
+          <label class="checkbox-item"><input type="checkbox" name="services" value="Landscaping" /><span>Landscaping</span></label>
+          <label class="checkbox-item"><input type="checkbox" name="services" value="Trimming" /><span>Hedge / Tree Trimming</span></label>
+          <label class="checkbox-item"><input type="checkbox" name="services" value="Cleanup" /><span>Seasonal Cleanup</span></label>
+          <label class="checkbox-item"><input type="checkbox" name="services" value="Commercial" /><span>Commercial Property</span></label>
         </div>
-    </section>
+      </div>
+      <div class="form-group">
+        <label for="q-details">Tell us about the job</label>
+        <textarea id="q-details" name="details" placeholder="Property size, current condition, anything else we should know..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary form-submit">Request My Free Quote →</button>
+      <p class="form-note">By submitting, you agree to be contacted by Cutt n Cousins about your request.</p>
+    </form>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Cutt N Cousins LLC. All rights reserved.</p>
-            <p>Licensed • Bonded • Insured | Serving Oklahoma & Beyond</p>
-        </div>
-    </footer>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Cutt n Cousins" />
+        <p class="footer-slogan">Your Lawn, Our Priority.</p>
+        <p>Professional lawn care and landscaping you can count on, week after week.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Lawn Mowing</a></li>
+          <li><a href="services.html">Landscaping</a></li>
+          <li><a href="services.html">Trimming</a></li>
+          <li><a href="services.html">Cleanups</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#testimonials">Reviews</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="portal.html">Customer Portal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><a href="quote.html">Request a Quote</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Cutt n Cousins Lawn Care & Landscaping</div>
+      <div>Locally owned · Fully insured</div>
+    </div>
+  </div>
+</footer>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
