@@ -133,19 +133,14 @@ a:hover {
     border-bottom-color: var(--primary-orange);
 }
 
-/* Hero Section with Logo Background */
+/* Hero Section with Banner Background */
 .hero {
     background-color: var(--primary-black);
-    background-image: 
-        /* Logo image as background */
-        url('logo.png'),
-        /* Watermark gradients */
-        radial-gradient(circle at 20% 30%, rgba(255, 149, 0, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255, 149, 0, 0.06) 0%, transparent 40%);
-    background-size: contain, 600px 400px, 700px 500px;
-    background-position: center, -50px -50px, 100px 150px;
-    background-repeat: no-repeat, repeat, repeat;
-    background-attachment: fixed;
+    background-image: url('banner.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
     color: var(--background-white);
     padding: 8rem 0;
     text-align: center;
